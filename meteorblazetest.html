@@ -1,0 +1,21 @@
+<head>
+  <title>Meteor Blaze Test</title>
+</head>
+
+<body>
+  {{> comments}}
+</body>
+
+<template name="comments">
+  <ul>
+    {{#each comments}}
+      {{>comment}}
+    {{/each}}
+  </ul>
+  <input type="button" value="Add Comment" />
+</template>
+
+<template name="comment">
+  <li>{{body}}</li>
+</template>
+
