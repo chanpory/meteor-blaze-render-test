@@ -13,10 +13,13 @@ if (Meteor.isClient) {
 
   Template.comment.rendered = function(){
     //This should only fire once.
-    console.log("rendered");
+    foo();
   }
 }
 
+var foo = function(){
+  console.log("rendered");
+}
 
 // Collections
 Comments = new Meteor.Collection('comments');
