@@ -1,37 +1,20 @@
 if (Meteor.isClient) {
   Template.comments.helpers({
     comments: function() {
+      //Why does this fire twice?
+      console.log(this);
       return Comments.find().fetch();
     }
   });
 
   Template.comments.events({
     'click input': function () {
-      Meteor.call("insertComment", {body:""});
+      var replyId = new Meteor.Collection.ObjectID()._str;
+       Comments.insert({_id: replyId, body:"Test comment"})
     }
   });
-
-  Template.comment.rendered = function(){
-    //This should only fire once.
-    foo();
-  }
-}
-
-var foo = function(){
-  console.log("rendered");
 }
 
 // Collections
 Comments = new Meteor.Collection('comments');
 
-// Methods
-Meteor.methods({
-  insertComment: function(commentAttributes) {
-    var comment = _.extend(commentAttributes, {
-      body: "Test comment",
-      submitted: new Date().getTime()
-    });
-
-    return Comments.insert(comment);
-  }
-});
