@@ -7,6 +7,10 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.comments.rendered = function(){
+    console.log(this);
+  };
+
   Template.comments.events({
     'click input': function () {
       var replyId = new Meteor.Collection.ObjectID()._str;
