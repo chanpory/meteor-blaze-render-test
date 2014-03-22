@@ -1,13 +1,13 @@
 if (Meteor.isClient) {
   Template.comments.helpers({
     comments: function() {
-      //Why does this fire twice?
       console.log(this);
       return Comments.find().fetch();
     }
   });
 
   Template.comments.rendered = function(){
+    // Why is this null now?
     console.log(this);
   };
 
